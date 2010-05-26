@@ -102,8 +102,10 @@ if (!exists('g:github_user') || !exists('g:github_token')) && !executable('git')
 endif
 
 if !executable('curl')
-  echoerr "Gist: require 'curl' command"
-  finish
+  if !exists('g:gist_shutup')
+    echoerr "Gist: require 'curl' command"
+    finish
+  endif
 endif
 
 if !exists('g:gist_open_browser_after_post')
